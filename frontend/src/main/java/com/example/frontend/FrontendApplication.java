@@ -39,7 +39,7 @@ public class FrontendApplication {
 			model.addAttribute("items", response.getBody());
 		}
 
-		model.addAttribute("name","HSE1801");
+		model.addAttribute("name","Summer School");
 		return "items";
 
 	}
