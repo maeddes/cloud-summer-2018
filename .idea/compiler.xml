@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="data" />
+        <module name="eureka" />
         <module name="frontend" />
         <module name="intro" />
         <module name="ToDoUI" />
@@ -14,6 +15,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="data" target="1.8" />
+      <module name="eureka" target="1.8" />
       <module name="frontend" target="1.8" />
       <module name="intro" target="1.8" />
       <module name="ToDoUI" target="1.8" />
