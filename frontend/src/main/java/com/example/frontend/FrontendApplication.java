@@ -1,5 +1,6 @@
 package com.example.frontend;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +17,13 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/")
 public class FrontendApplication {
 
+	@Value("${frontend.endpoint:localhost:8080}")
+	String ENDPOINT;
+
 	@GetMapping("/test")
 	public String test(){
 
-		return "Ok";
+		return ENDPOINT+" Ok";
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -29,10 +33,10 @@ public class FrontendApplication {
 
 		RestTemplate template = new RestTemplate();
 
-		String url = "http://localhost:8080/todos/";
+		String url = "http://"+ENDPOINT+"/todos/";
 
 		ResponseEntity<String[]> response = template.getForEntity(url, String[].class);
-
+		
 		System.out.println("In getItems: "+response);
 
 		if(response != null){
@@ -51,11 +55,12 @@ public class FrontendApplication {
 
 		RestTemplate template = new RestTemplate();
 
-		String url = "http://localhost:8080/todos/"+toDo;
+		String url = "http://"+ENDPOINT+"/todos/"+toDo;
 
+		
 		ResponseEntity<String> response = template.postForEntity(url, null, String.class);
 		System.out.println("UI.addItem - POST Response: " + response.getBody());
-
+		
 		return "redirect:/";
 
 	}
@@ -67,7 +72,7 @@ public class FrontendApplication {
 
 		RestTemplate template = new RestTemplate();
 
-		String url = "http://localhost:8080/todos/" + toDo;
+		String url = "http://"+ENDPOINT+"/todos/" + toDo;
 
 		template.delete(url);
 
